@@ -95,11 +95,18 @@ public class MainActivity extends AppCompatActivity {
                     Note result = data.getParcelableExtra("item");
                     int position = data.getIntExtra("position", -1);
 
-                    Note aux = adapter.getItem(position);
-                    aux.setTitle(result.getTitle());
-                    aux.setDescription(result.getDescription());
-                }
+                    if (result == null) {
+                        if (position != -1) {
+                            items.remove(position);
+                            adapter.notifyDataSetChanged();
+                        }
+                    } else {
+                        Note aux = adapter.getItem(position);
+                        aux.setTitle(result.getTitle());
+                        aux.setDescription(result.getDescription());
+                    }
 
+                }
         }
     }//onActivityResult
 

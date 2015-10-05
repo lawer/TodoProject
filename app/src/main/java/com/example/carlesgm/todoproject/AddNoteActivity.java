@@ -48,10 +48,22 @@ public class AddNoteActivity extends AppCompatActivity {
         finish();
     }
 
+    public void onDeleteclick() {
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("position", position);
+        setResult(RESULT_OK, returnIntent);
+
+        finish();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_note_detail, menu);
+        if (item == null)
+            getMenuInflater().inflate(R.menu.menu_note_detail, menu);
+        else
+            getMenuInflater().inflate(R.menu.menu_note_detail_delete, menu);
+
         return true;
     }
 
@@ -73,6 +85,11 @@ public class AddNoteActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.miDelete) {
+            onDeleteclick();
+            finish();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
