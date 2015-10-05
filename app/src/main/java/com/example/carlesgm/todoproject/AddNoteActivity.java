@@ -1,17 +1,18 @@
 package com.example.carlesgm.todoproject;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 
 public class AddNoteActivity extends AppCompatActivity {
 
     private EditText edTitol;
     private EditText edDescripcio;
+    private Note item;
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,14 @@ public class AddNoteActivity extends AppCompatActivity {
         edTitol = (EditText) findViewById(R.id.edTitol);
         edDescripcio = (EditText) findViewById(R.id.edDescriptio);
 
+        Intent i = getIntent();
+        item = i.getParcelableExtra("item");
+        position = i.getIntExtra("position", -1);
 
+        if (item != null) {
+            edTitol.setText(item.getTitle());
+            edDescripcio.setText(item.getDescription());
+        }
     }
 
     public void onGuardarClick() {
@@ -33,8 +41,10 @@ public class AddNoteActivity extends AppCompatActivity {
         result.setDescription(descripcio);
 
         Intent returnIntent = new Intent();
-        returnIntent.putExtra("result",result);
+        returnIntent.putExtra("item", result);
+        returnIntent.putExtra("position", position);
         setResult(RESULT_OK, returnIntent);
+
         finish();
     }
 
