@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp">
+
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:id="@+id/ivNota"
+        android:src="@drawable/ic_assignment_indigo_900_48dp"
+        android:layout_alignParentEnd="false"
+        android:paddingRight="6dp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+        android:id="@+id/tvTitol"
+        android:layout_toEndOf="@id/ivNota"
+        android:layout_centerVertical="true" />
+</RelativeLayout>
